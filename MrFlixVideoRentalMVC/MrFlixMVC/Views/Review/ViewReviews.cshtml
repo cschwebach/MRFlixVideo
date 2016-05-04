@@ -1,0 +1,39 @@
+﻿@model IEnumerable<BuisnessObjects.Reviews>
+
+@{
+    ViewBag.Title = "ViewReviews";
+}
+
+<h2>Movie Reviews by you the people</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(m => m.ReviewID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.MovieTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.MovieReview)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.ReviewID
+                </td>
+                <td>
+                    @item.MovieTitle
+                </td>
+                <td>
+                    @item.MovieReview
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

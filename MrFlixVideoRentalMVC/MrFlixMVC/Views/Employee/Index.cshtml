@@ -1,0 +1,56 @@
+﻿@model IEnumerable<BuisnessObjects.Employee>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@*<h3 style="float:right">@Html.ActionLink("Add Employee", "AddEmployee", "Employee")</h3>*@
+<h3 style="float:right">@Html.ActionLink("Add Employee", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</h3>
+    <h2>Employee List</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(m => m.EmployeeID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Email)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.EmployeeID
+                    </td>
+                    <td>
+                        @item.UserName
+                    </td>
+                    <td>
+                        @item.FirstName
+                    </td>
+                    <td>
+                        @item.LastName
+                    </td>
+                    <td>
+                        @item.Email
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+

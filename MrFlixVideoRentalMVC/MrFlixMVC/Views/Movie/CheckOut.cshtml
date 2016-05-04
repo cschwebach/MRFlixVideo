@@ -1,0 +1,49 @@
+﻿@model BuisnessObjects.Records
+
+@{
+    ViewBag.Title = "CheckOut";
+}
+
+<h2>Check-Out Movie</h2>
+
+<script src="~/Scripts/jquery-2.2.3.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <br />
+    <br />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(model => model.MovieTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.MovieTitle, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.MovieTitle, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(model => model.CustomerID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CustomerID, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CustomerID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" style="width:100px; background-color: lightblue" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+    <br />
+    <br />
+}
+

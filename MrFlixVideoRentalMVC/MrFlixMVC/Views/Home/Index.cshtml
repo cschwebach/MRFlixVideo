@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Mr Flix Video</h1>
+    <p class="lead">If you are a guest and would like to give a movie review please click here!</p>
+    <h3>@Html.ActionLink("Give A Movie Review", "AddReview", "Review")</h3>
+    <h3>@Html.ActionLink("View Movie Review ", "ViewReviews", "Review")</h3>
+    <img src="../Images/movie.jpg" alt="movie" position="center" height="180" width="180">
+</div>
+

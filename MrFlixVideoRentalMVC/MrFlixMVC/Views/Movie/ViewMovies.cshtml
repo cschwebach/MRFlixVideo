@@ -1,0 +1,52 @@
+﻿@model IEnumerable<BuisnessObjects.Movie>
+
+@{
+    ViewBag.Title = "ViewMovies";
+}
+
+<h3 style="float:right">@Html.ActionLink("Add Movie", "AddMovie", "Movie")</h3>
+<h2>Movie List</h2> 
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(m => m.MovieTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.GenreType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.CreatedEmployeeID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Director)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.YearReleased)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.MovieTitle
+                </td>
+                <td>
+                    @item.GenreType
+                </td>
+                <td>
+                    @item.CreatedEmployeeID
+                </td>
+                <td>
+                    @item.Director
+                </td>
+                <td>
+                    @item.YearReleased
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

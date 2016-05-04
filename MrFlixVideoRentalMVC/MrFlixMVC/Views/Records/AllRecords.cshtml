@@ -1,0 +1,64 @@
+﻿@model IEnumerable<BuisnessObjects.Records>
+
+@{
+    ViewBag.Title = "AllRecords";
+}
+
+<h2>Movies that have been Checked-Out & Checked-In since Mr.Flix has been in business</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(m => m.OrderID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.CheckOutEmployeeID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.MovieTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.CustomerID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.DateCheckedOut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.CheckInEmployeeID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.DateCheckedIn)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.OrderID
+                </td>
+                <td>
+                    @item.CheckOutEmployeeID
+                </td>
+                <td>
+                    @item.MovieTitle
+                </td>
+                <td>
+                    @item.CustomerID
+                </td>
+                <td>
+                    @item.DateCheckedOut
+                </td>
+                <td>
+                    @item.CheckInEmployeeID
+                </td>
+                <td>
+                    @item.DateCheckedIn
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

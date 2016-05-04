@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MrFlixVideoRentalsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CheckOutRecord">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CheckOutEmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="MovieTitle" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CustomerID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="DateCheckedOut" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CheckInEmployeeID" Type="Int32" />
+    <Property Name="DateCheckedIn" Type="DateTime" Precision="3" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.fk_CheckOutRecords_CheckInEmployeeID" FromRole="CheckOutRecords" ToRole="Employees" />
+    <NavigationProperty Name="Employee1" Relationship="Self.fk_CheckOutRecords_CheckOutEmployeeID" FromRole="CheckOutRecords" ToRole="Employees" />
+    <NavigationProperty Name="Customer" Relationship="Self.fk_CheckOutRecords_CustomerID" FromRole="CheckOutRecords" ToRole="Customers" />
+    <NavigationProperty Name="Movy" Relationship="Self.fk_CheckOutRecords_MovieTitle" FromRole="CheckOutRecords" ToRole="Movies" />
+    <NavigationProperty Name="MovieLineItems" Relationship="Self.fk_MovieRentalLogs_OrderID" FromRole="CheckOutRecords" ToRole="MovieLineItems" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CreatedEmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="CheckOutRecords" Relationship="Self.fk_CheckOutRecords_CustomerID" FromRole="Customers" ToRole="CheckOutRecords" />
+    <NavigationProperty Name="Employee" Relationship="Self.fk_Customers_CreatedEmployeeID" FromRole="Customers" ToRole="Employees" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="CheckOutRecords" Relationship="Self.fk_CheckOutRecords_CheckInEmployeeID" FromRole="Employees" ToRole="CheckOutRecords" />
+    <NavigationProperty Name="CheckOutRecords1" Relationship="Self.fk_CheckOutRecords_CheckOutEmployeeID" FromRole="Employees" ToRole="CheckOutRecords" />
+    <NavigationProperty Name="Customers" Relationship="Self.fk_Customers_CreatedEmployeeID" FromRole="Employees" ToRole="Customers" />
+    <NavigationProperty Name="Movies" Relationship="Self.fk_Movies_CreatedEmployeeID" FromRole="Employees" ToRole="Movies" />
+  </EntityType>
+  <EntityType Name="Genre">
+    <Key>
+      <PropertyRef Name="GenreType" />
+    </Key>
+    <Property Name="GenreType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GenreDescription" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Movies" Relationship="Self.fk_Movies_GenreType" FromRole="Genres" ToRole="Movies" />
+  </EntityType>
+  <EntityType Name="MovieLineItem">
+    <Key>
+      <PropertyRef Name="MovieTitle" />
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="MovieTitle" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="CheckOutRecord" Relationship="Self.fk_MovieRentalLogs_OrderID" FromRole="MovieLineItems" ToRole="CheckOutRecords" />
+    <NavigationProperty Name="Movy" Relationship="Self.fk_MovieRentalLogs_MovieTitle" FromRole="MovieLineItems" ToRole="Movies" />
+  </EntityType>
+  <EntityType Name="Movy">
+    <Key>
+      <PropertyRef Name="MovieTitle" />
+    </Key>
+    <Property Name="MovieTitle" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GenreType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CreatedEmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="Director" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="YearReleased" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="CheckOutRecords" Relationship="Self.fk_CheckOutRecords_MovieTitle" FromRole="Movies" ToRole="CheckOutRecords" />
+    <NavigationProperty Name="Employee" Relationship="Self.fk_Movies_CreatedEmployeeID" FromRole="Movies" ToRole="Employees" />
+    <NavigationProperty Name="Genre" Relationship="Self.fk_Movies_GenreType" FromRole="Movies" ToRole="Genres" />
+    <NavigationProperty Name="MovieLineItems" Relationship="Self.fk_MovieRentalLogs_MovieTitle" FromRole="Movies" ToRole="MovieLineItems" />
+    <NavigationProperty Name="ReviewRecords" Relationship="Self.fk_ReviewRecords_MovieTitle" FromRole="Movies" ToRole="ReviewRecords" />
+  </EntityType>
+  <EntityType Name="ReviewRecord">
+    <Key>
+      <PropertyRef Name="ReviewID" />
+    </Key>
+    <Property Name="ReviewID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MovieTitle" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MovieReview" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Movy" Relationship="Self.fk_ReviewRecords_MovieTitle" FromRole="ReviewRecords" ToRole="Movies" />
+  </EntityType>
+  <Association Name="fk_CheckOutRecords_CheckInEmployeeID">
+    <End Role="Employees" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="CheckOutRecords" Type="Self.CheckOutRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="CheckOutRecords">
+        <PropertyRef Name="CheckInEmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_CheckOutRecords_CheckOutEmployeeID">
+    <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+    <End Role="CheckOutRecords" Type="Self.CheckOutRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="CheckOutRecords">
+        <PropertyRef Name="CheckOutEmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_CheckOutRecords_CustomerID">
+    <End Role="Customers" Type="Self.Customer" Multiplicity="1" />
+    <End Role="CheckOutRecords" Type="Self.CheckOutRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="CheckOutRecords">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_CheckOutRecords_MovieTitle">
+    <End Role="Movies" Type="Self.Movy" Multiplicity="1" />
+    <End Role="CheckOutRecords" Type="Self.CheckOutRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movies">
+        <PropertyRef Name="MovieTitle" />
+      </Principal>
+      <Dependent Role="CheckOutRecords">
+        <PropertyRef Name="MovieTitle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_MovieRentalLogs_OrderID">
+    <End Role="CheckOutRecords" Type="Self.CheckOutRecord" Multiplicity="1" />
+    <End Role="MovieLineItems" Type="Self.MovieLineItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CheckOutRecords">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="MovieLineItems">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Customers_CreatedEmployeeID">
+    <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Customers" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="Customers">
+        <PropertyRef Name="CreatedEmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Movies_CreatedEmployeeID">
+    <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Movies" Type="Self.Movy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="Movies">
+        <PropertyRef Name="CreatedEmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Movies_GenreType">
+    <End Role="Genres" Type="Self.Genre" Multiplicity="1" />
+    <End Role="Movies" Type="Self.Movy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genres">
+        <PropertyRef Name="GenreType" />
+      </Principal>
+      <Dependent Role="Movies">
+        <PropertyRef Name="GenreType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_MovieRentalLogs_MovieTitle">
+    <End Role="Movies" Type="Self.Movy" Multiplicity="1" />
+    <End Role="MovieLineItems" Type="Self.MovieLineItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movies">
+        <PropertyRef Name="MovieTitle" />
+      </Principal>
+      <Dependent Role="MovieLineItems">
+        <PropertyRef Name="MovieTitle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_ReviewRecords_MovieTitle">
+    <End Role="Movies" Type="Self.Movy" Multiplicity="1" />
+    <End Role="ReviewRecords" Type="Self.ReviewRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movies">
+        <PropertyRef Name="MovieTitle" />
+      </Principal>
+      <Dependent Role="ReviewRecords">
+        <PropertyRef Name="MovieTitle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MrFlixVideoRentalsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CheckOutRecords" EntityType="Self.CheckOutRecord" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="Genres" EntityType="Self.Genre" />
+    <EntitySet Name="MovieLineItems" EntityType="Self.MovieLineItem" />
+    <EntitySet Name="Movies" EntityType="Self.Movy" />
+    <EntitySet Name="ReviewRecords" EntityType="Self.ReviewRecord" />
+    <AssociationSet Name="fk_CheckOutRecords_CheckInEmployeeID" Association="Self.fk_CheckOutRecords_CheckInEmployeeID">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="CheckOutRecords" EntitySet="CheckOutRecords" />
+    </AssociationSet>
+    <AssociationSet Name="fk_CheckOutRecords_CheckOutEmployeeID" Association="Self.fk_CheckOutRecords_CheckOutEmployeeID">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="CheckOutRecords" EntitySet="CheckOutRecords" />
+    </AssociationSet>
+    <AssociationSet Name="fk_CheckOutRecords_CustomerID" Association="Self.fk_CheckOutRecords_CustomerID">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="CheckOutRecords" EntitySet="CheckOutRecords" />
+    </AssociationSet>
+    <AssociationSet Name="fk_CheckOutRecords_MovieTitle" Association="Self.fk_CheckOutRecords_MovieTitle">
+      <End Role="Movies" EntitySet="Movies" />
+      <End Role="CheckOutRecords" EntitySet="CheckOutRecords" />
+    </AssociationSet>
+    <AssociationSet Name="fk_MovieRentalLogs_OrderID" Association="Self.fk_MovieRentalLogs_OrderID">
+      <End Role="CheckOutRecords" EntitySet="CheckOutRecords" />
+      <End Role="MovieLineItems" EntitySet="MovieLineItems" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Customers_CreatedEmployeeID" Association="Self.fk_Customers_CreatedEmployeeID">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Customers" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Movies_CreatedEmployeeID" Association="Self.fk_Movies_CreatedEmployeeID">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Movies" EntitySet="Movies" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Movies_GenreType" Association="Self.fk_Movies_GenreType">
+      <End Role="Genres" EntitySet="Genres" />
+      <End Role="Movies" EntitySet="Movies" />
+    </AssociationSet>
+    <AssociationSet Name="fk_MovieRentalLogs_MovieTitle" Association="Self.fk_MovieRentalLogs_MovieTitle">
+      <End Role="Movies" EntitySet="Movies" />
+      <End Role="MovieLineItems" EntitySet="MovieLineItems" />
+    </AssociationSet>
+    <AssociationSet Name="fk_ReviewRecords_MovieTitle" Association="Self.fk_ReviewRecords_MovieTitle">
+      <End Role="Movies" EntitySet="Movies" />
+      <End Role="ReviewRecords" EntitySet="ReviewRecords" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

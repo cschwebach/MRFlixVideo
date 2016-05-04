@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MrFlixVideoRentalsModelStoreContainer" CdmEntityContainer="MrFlixVideoRentalsEntities">
+    <EntitySetMapping Name="CheckOutRecords">
+      <EntityTypeMapping TypeName="MrFlixVideoRentalsModel.CheckOutRecord">
+        <MappingFragment StoreEntitySet="CheckOutRecords">
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="CheckOutEmployeeID" ColumnName="CheckOutEmployeeID" />
+          <ScalarProperty Name="MovieTitle" ColumnName="MovieTitle" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="DateCheckedOut" ColumnName="DateCheckedOut" />
+          <ScalarProperty Name="CheckInEmployeeID" ColumnName="CheckInEmployeeID" />
+          <ScalarProperty Name="DateCheckedIn" ColumnName="DateCheckedIn" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="MrFlixVideoRentalsModel.Customer">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="CreatedEmployeeID" ColumnName="CreatedEmployeeID" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="MrFlixVideoRentalsModel.Employee">
+        <MappingFragment StoreEntitySet="Employees">
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Genres">
+      <EntityTypeMapping TypeName="MrFlixVideoRentalsModel.Genre">
+        <MappingFragment StoreEntitySet="Genres">
+          <ScalarProperty Name="GenreType" ColumnName="GenreType" />
+          <ScalarProperty Name="GenreDescription" ColumnName="GenreDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MovieLineItems">
+      <EntityTypeMapping TypeName="MrFlixVideoRentalsModel.MovieLineItem">
+        <MappingFragment StoreEntitySet="MovieLineItems">
+          <ScalarProperty Name="MovieTitle" ColumnName="MovieTitle" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Movies">
+      <EntityTypeMapping TypeName="MrFlixVideoRentalsModel.Movy">
+        <MappingFragment StoreEntitySet="Movies">
+          <ScalarProperty Name="MovieTitle" ColumnName="MovieTitle" />
+          <ScalarProperty Name="GenreType" ColumnName="GenreType" />
+          <ScalarProperty Name="CreatedEmployeeID" ColumnName="CreatedEmployeeID" />
+          <ScalarProperty Name="Director" ColumnName="Director" />
+          <ScalarProperty Name="YearReleased" ColumnName="YearReleased" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReviewRecords">
+      <EntityTypeMapping TypeName="MrFlixVideoRentalsModel.ReviewRecord">
+        <MappingFragment StoreEntitySet="ReviewRecords">
+          <ScalarProperty Name="ReviewID" ColumnName="ReviewID" />
+          <ScalarProperty Name="MovieTitle" ColumnName="MovieTitle" />
+          <ScalarProperty Name="MovieReview" ColumnName="MovieReview" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

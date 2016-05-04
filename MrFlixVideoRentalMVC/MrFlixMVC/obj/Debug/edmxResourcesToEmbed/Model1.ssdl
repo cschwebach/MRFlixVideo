@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MrFlixVideoRentalsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CheckOutRecords">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CheckOutEmployeeID" Type="int" Nullable="false" />
+    <Property Name="MovieTitle" Type="varchar" MaxLength="75" Nullable="false" />
+    <Property Name="CustomerID" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="DateCheckedOut" Type="datetime" Nullable="false" />
+    <Property Name="CheckInEmployeeID" Type="int" />
+    <Property Name="DateCheckedIn" Type="datetime" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="75" Nullable="false" />
+    <Property Name="CreatedEmployeeID" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="75" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Genres">
+    <Key>
+      <PropertyRef Name="GenreType" />
+    </Key>
+    <Property Name="GenreType" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="GenreDescription" Type="varchar" MaxLength="80" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MovieLineItems">
+    <Key>
+      <PropertyRef Name="MovieTitle" />
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="MovieTitle" Type="varchar" MaxLength="75" Nullable="false" />
+    <Property Name="OrderID" Type="int" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Movies">
+    <Key>
+      <PropertyRef Name="MovieTitle" />
+    </Key>
+    <Property Name="MovieTitle" Type="varchar" MaxLength="75" Nullable="false" />
+    <Property Name="GenreType" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="CreatedEmployeeID" Type="int" Nullable="false" />
+    <Property Name="Director" Type="varchar" MaxLength="75" Nullable="false" />
+    <Property Name="YearReleased" Type="char" MaxLength="4" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ReviewRecords">
+    <Key>
+      <PropertyRef Name="ReviewID" />
+    </Key>
+    <Property Name="ReviewID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MovieTitle" Type="varchar" MaxLength="75" Nullable="false" />
+    <Property Name="MovieReview" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <Association Name="fk_CheckOutRecords_CheckInEmployeeID">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="CheckOutRecords" Type="Self.CheckOutRecords" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="CheckOutRecords">
+        <PropertyRef Name="CheckInEmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_CheckOutRecords_CheckOutEmployeeID">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="CheckOutRecords" Type="Self.CheckOutRecords" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="CheckOutRecords">
+        <PropertyRef Name="CheckOutEmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_CheckOutRecords_CustomerID">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+    <End Role="CheckOutRecords" Type="Self.CheckOutRecords" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="CheckOutRecords">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_CheckOutRecords_MovieTitle">
+    <End Role="Movies" Type="Self.Movies" Multiplicity="1" />
+    <End Role="CheckOutRecords" Type="Self.CheckOutRecords" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movies">
+        <PropertyRef Name="MovieTitle" />
+      </Principal>
+      <Dependent Role="CheckOutRecords">
+        <PropertyRef Name="MovieTitle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Customers_CreatedEmployeeID">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="Customers">
+        <PropertyRef Name="CreatedEmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_MovieRentalLogs_MovieTitle">
+    <End Role="Movies" Type="Self.Movies" Multiplicity="1" />
+    <End Role="MovieLineItems" Type="Self.MovieLineItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movies">
+        <PropertyRef Name="MovieTitle" />
+      </Principal>
+      <Dependent Role="MovieLineItems">
+        <PropertyRef Name="MovieTitle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_MovieRentalLogs_OrderID">
+    <End Role="CheckOutRecords" Type="Self.CheckOutRecords" Multiplicity="1" />
+    <End Role="MovieLineItems" Type="Self.MovieLineItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CheckOutRecords">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="MovieLineItems">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Movies_CreatedEmployeeID">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="Movies" Type="Self.Movies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="Movies">
+        <PropertyRef Name="CreatedEmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Movies_GenreType">
+    <End Role="Genres" Type="Self.Genres" Multiplicity="1" />
+    <End Role="Movies" Type="Self.Movies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genres">
+        <PropertyRef Name="GenreType" />
+      </Principal>
+      <Dependent Role="Movies">
+        <PropertyRef Name="GenreType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_ReviewRecords_MovieTitle">
+    <End Role="Movies" Type="Self.Movies" Multiplicity="1" />
+    <End Role="ReviewRecords" Type="Self.ReviewRecords" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movies">
+        <PropertyRef Name="MovieTitle" />
+      </Principal>
+      <Dependent Role="ReviewRecords">
+        <PropertyRef Name="MovieTitle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MrFlixVideoRentalsModelStoreContainer">
+    <EntitySet Name="CheckOutRecords" EntityType="Self.CheckOutRecords" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Genres" EntityType="Self.Genres" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MovieLineItems" EntityType="Self.MovieLineItems" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Movies" EntityType="Self.Movies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReviewRecords" EntityType="Self.ReviewRecords" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_CheckOutRecords_CheckInEmployeeID" Association="Self.fk_CheckOutRecords_CheckInEmployeeID">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="CheckOutRecords" EntitySet="CheckOutRecords" />
+    </AssociationSet>
+    <AssociationSet Name="fk_CheckOutRecords_CheckOutEmployeeID" Association="Self.fk_CheckOutRecords_CheckOutEmployeeID">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="CheckOutRecords" EntitySet="CheckOutRecords" />
+    </AssociationSet>
+    <AssociationSet Name="fk_CheckOutRecords_CustomerID" Association="Self.fk_CheckOutRecords_CustomerID">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="CheckOutRecords" EntitySet="CheckOutRecords" />
+    </AssociationSet>
+    <AssociationSet Name="fk_CheckOutRecords_MovieTitle" Association="Self.fk_CheckOutRecords_MovieTitle">
+      <End Role="Movies" EntitySet="Movies" />
+      <End Role="CheckOutRecords" EntitySet="CheckOutRecords" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Customers_CreatedEmployeeID" Association="Self.fk_Customers_CreatedEmployeeID">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Customers" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="fk_MovieRentalLogs_MovieTitle" Association="Self.fk_MovieRentalLogs_MovieTitle">
+      <End Role="Movies" EntitySet="Movies" />
+      <End Role="MovieLineItems" EntitySet="MovieLineItems" />
+    </AssociationSet>
+    <AssociationSet Name="fk_MovieRentalLogs_OrderID" Association="Self.fk_MovieRentalLogs_OrderID">
+      <End Role="CheckOutRecords" EntitySet="CheckOutRecords" />
+      <End Role="MovieLineItems" EntitySet="MovieLineItems" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Movies_CreatedEmployeeID" Association="Self.fk_Movies_CreatedEmployeeID">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Movies" EntitySet="Movies" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Movies_GenreType" Association="Self.fk_Movies_GenreType">
+      <End Role="Genres" EntitySet="Genres" />
+      <End Role="Movies" EntitySet="Movies" />
+    </AssociationSet>
+    <AssociationSet Name="fk_ReviewRecords_MovieTitle" Association="Self.fk_ReviewRecords_MovieTitle">
+      <End Role="Movies" EntitySet="Movies" />
+      <End Role="ReviewRecords" EntitySet="ReviewRecords" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
