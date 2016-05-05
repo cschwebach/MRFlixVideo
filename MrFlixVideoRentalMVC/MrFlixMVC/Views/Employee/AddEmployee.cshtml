@@ -4,8 +4,6 @@
     ViewBag.Title = "AddEmployee";
 }
 
-<h2>Add Movie Here:</h2>
-
 <script src="~/Scripts/jquery-2.2.3.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
@@ -13,6 +11,7 @@
 <p class="text-success">@ViewBag.StatusMessage</p>
 @using (Html.BeginForm())
 {
+    <h2 style="color:red;">Add Movie Here</h2>
     @Html.AntiForgeryToken()
     <br />
     <br />
@@ -65,7 +64,7 @@
     <br />
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" style="width:100px; background-color: lightblue" value="Save" class="btn btn-default" />
+            <input type="submit" style="width:100px; background-color: lightblue" value="Add Employee" class="btn btn-default" />
         </div>
     </div>
     <br />

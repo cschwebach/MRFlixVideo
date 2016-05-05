@@ -43,6 +43,7 @@ namespace MrFlixMVC.Controllers
                     mvmgr.AddNewMovie(movieTitle, employeeID, genreType, director, yearReleased);
                    
                     ViewBag.StatusMessage = "Movie Added!";
+                    return RedirectToAction("ViewMovies", "Movie");
                 }
             }
             catch (Exception ex)
@@ -72,6 +73,7 @@ namespace MrFlixMVC.Controllers
                     rcmgr.AddNewRecord(employeeID, movieTitle, CustomerID);
 
                     ViewBag.StatusMessage = "Movie Checked Out Successfully!";
+                    return RedirectToAction("MoviesOut", "Records");
                 }
             }
             catch (Exception ex)
@@ -101,12 +103,18 @@ namespace MrFlixMVC.Controllers
                     rcmgr.CheckInMovie(employeeID, movieTitle);
 
                     ViewBag.StatusMessage = "Movie Checked In Successfully!";
+                    return RedirectToAction("AllRecords", "Records");
                 }
             }
             catch (Exception ex)
             {
                 ViewBag.StatusMessage = ex.Message;
             }
+            return View();
+        }
+
+        public ActionResult MovieTrailers()
+        {
             return View();
         }
 

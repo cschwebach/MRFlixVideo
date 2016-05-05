@@ -34,7 +34,9 @@ namespace MrFlixMVC.Controllers
             }
             catch (Exception ex)
             {
+               
                 ViewBag.StatusMessage = ex.Message;
+                return RedirectToAction("Index", "Home");
             }
             return View();
         }

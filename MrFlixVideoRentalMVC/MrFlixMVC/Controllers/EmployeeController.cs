@@ -36,6 +36,7 @@ namespace MrFlixMVC.Controllers
                     empgr.AddNewEmployee(userName, password, firstName, lastName, email);
 
                     ViewBag.StatusMessage = "New Employee Added!";
+                    return RedirectToAction("Index", "Employee");
                 }
             }
             catch (Exception ex)

@@ -13,7 +13,7 @@ namespace BuisnessLogic
         /*
          * Logic method that communicates with the data access layer to get the list of cutomers
          */
-        public List<Customer> GetCustomerList()
+        public static List<Customer> GetCustomerList()
         {
             try
             {

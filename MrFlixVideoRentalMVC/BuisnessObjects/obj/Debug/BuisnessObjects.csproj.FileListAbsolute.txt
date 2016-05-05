@@ -26,3 +26,8 @@ C:\MrFlixVideoRentalMVC\BuisnessObjects\bin\Debug\BuisnessObjects.dll
 C:\MrFlixVideoRentalMVC\BuisnessObjects\bin\Debug\BuisnessObjects.pdb
 C:\MrFlixVideoRentalMVC\BuisnessObjects\obj\Debug\BuisnessObjects.dll
 C:\MrFlixVideoRentalMVC\BuisnessObjects\obj\Debug\BuisnessObjects.pdb
+E:\FinalProject\MrFlixVideoRentalMVC\BuisnessObjects\bin\Debug\BuisnessObjects.dll
+E:\FinalProject\MrFlixVideoRentalMVC\BuisnessObjects\bin\Debug\BuisnessObjects.pdb
+E:\FinalProject\MrFlixVideoRentalMVC\BuisnessObjects\obj\Debug\BuisnessObjects.csprojResolveAssemblyReference.cache
+E:\FinalProject\MrFlixVideoRentalMVC\BuisnessObjects\obj\Debug\BuisnessObjects.dll
+E:\FinalProject\MrFlixVideoRentalMVC\BuisnessObjects\obj\Debug\BuisnessObjects.pdb

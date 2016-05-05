@@ -36,6 +36,7 @@ namespace MrFlixMVC.Controllers
                     rvmgr.AddNewReview(movieTitle, movieReview);
 
                     ViewBag.StatusMessage = "Review Added!";
+                    return RedirectToAction("ViewReviews", "Review");
                 }
             }
             catch (Exception ex)

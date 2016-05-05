@@ -40,3 +40,10 @@ C:\MrFlixVideoRentalMVC\DataAccess\bin\Debug\BuisnessObjects.pdb
 C:\MrFlixVideoRentalMVC\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
 C:\MrFlixVideoRentalMVC\DataAccess\obj\Debug\DataAccess.dll
 C:\MrFlixVideoRentalMVC\DataAccess\obj\Debug\DataAccess.pdb
+E:\FinalProject\MrFlixVideoRentalMVC\DataAccess\bin\Debug\DataAccess.dll
+E:\FinalProject\MrFlixVideoRentalMVC\DataAccess\bin\Debug\DataAccess.pdb
+E:\FinalProject\MrFlixVideoRentalMVC\DataAccess\bin\Debug\BuisnessObjects.dll
+E:\FinalProject\MrFlixVideoRentalMVC\DataAccess\bin\Debug\BuisnessObjects.pdb
+E:\FinalProject\MrFlixVideoRentalMVC\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
+E:\FinalProject\MrFlixVideoRentalMVC\DataAccess\obj\Debug\DataAccess.dll
+E:\FinalProject\MrFlixVideoRentalMVC\DataAccess\obj\Debug\DataAccess.pdb

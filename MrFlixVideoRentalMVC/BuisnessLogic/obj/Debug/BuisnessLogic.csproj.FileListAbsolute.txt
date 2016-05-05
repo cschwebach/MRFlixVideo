@@ -61,3 +61,12 @@ F:\FinalProject\MrFlixVideoRentalMVC\BuisnessLogic\bin\Debug\DataAccess.pdb
 F:\FinalProject\MrFlixVideoRentalMVC\BuisnessLogic\obj\Debug\BuisnessLogic.csprojResolveAssemblyReference.cache
 F:\FinalProject\MrFlixVideoRentalMVC\BuisnessLogic\obj\Debug\BuisnessLogic.dll
 F:\FinalProject\MrFlixVideoRentalMVC\BuisnessLogic\obj\Debug\BuisnessLogic.pdb
+E:\FinalProject\MrFlixVideoRentalMVC\BuisnessLogic\bin\Debug\BuisnessLogic.dll
+E:\FinalProject\MrFlixVideoRentalMVC\BuisnessLogic\bin\Debug\BuisnessLogic.pdb
+E:\FinalProject\MrFlixVideoRentalMVC\BuisnessLogic\bin\Debug\BuisnessObjects.dll
+E:\FinalProject\MrFlixVideoRentalMVC\BuisnessLogic\bin\Debug\DataAccess.dll
+E:\FinalProject\MrFlixVideoRentalMVC\BuisnessLogic\bin\Debug\BuisnessObjects.pdb
+E:\FinalProject\MrFlixVideoRentalMVC\BuisnessLogic\bin\Debug\DataAccess.pdb
+E:\FinalProject\MrFlixVideoRentalMVC\BuisnessLogic\obj\Debug\BuisnessLogic.csprojResolveAssemblyReference.cache
+E:\FinalProject\MrFlixVideoRentalMVC\BuisnessLogic\obj\Debug\BuisnessLogic.dll
+E:\FinalProject\MrFlixVideoRentalMVC\BuisnessLogic\obj\Debug\BuisnessLogic.pdb

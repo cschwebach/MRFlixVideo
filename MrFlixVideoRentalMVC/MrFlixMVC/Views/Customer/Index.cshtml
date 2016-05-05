@@ -1,0 +1,53 @@
+﻿@model IEnumerable<BuisnessObjects.Customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3 style="float:right">@Html.ActionLink("Add Customer", "AddCustomer", "Customer")</h3>
+<h1 style="color:red;">Customer List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(m => m.CustomerID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.CreatedEmployeeID)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.CustomerID
+                </td>
+                <td>
+                    @item.FirstName
+                </td>
+                <td>
+                    @item.LastName
+                </td>
+                <td>
+                    @item.CreatedEmployeeID
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+

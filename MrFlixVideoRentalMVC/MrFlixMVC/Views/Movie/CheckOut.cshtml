@@ -4,15 +4,15 @@
     ViewBag.Title = "CheckOut";
 }
 
-<h2>Check-Out Movie</h2>
-
 <script src="~/Scripts/jquery-2.2.3.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
-<p class="text-success">@ViewBag.StatusMessage</p>
+
 @using (Html.BeginForm())
 {
+    <h2 style="color:red;">Check-Out Movie</h2>
+    <h4 style="background-color:white; color:limegreen;" class="text-success">@ViewBag.StatusMessage</h4>
     @Html.AntiForgeryToken()
     <br />
     <br />
@@ -40,7 +40,7 @@
     <br />
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" style="width:100px; background-color: lightblue" value="Save" class="btn btn-default" />
+            <input type="submit" style="width:100px; background-color: lightblue;" value="Check Out" class="btn btn-default" />
         </div>
     </div>
     <br />
